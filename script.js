@@ -20,7 +20,8 @@ function removeLoadingSpinnger() {
 // Get Quote from API
 async function getQuote() {
   showLoadingSpinner();
-  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  const proxyUrl = 'https://evening-ocean-58525.herokuapp.com/';
+  // const proxyUrl = 'https://cors-anywhere.herokuapp.com/'; Original proxyUrl that doesn't always work.
   const apiUrl =
     'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
   try {
@@ -44,6 +45,7 @@ async function getQuote() {
     removeLoadingSpinnger();
   } catch (error) {
     console.log('Whoops, no quote', error);
+    // This recursive API call is needed because a quote isn't always returned on first call.
     getQuote();
   }
 }
